@@ -255,6 +255,7 @@ namespace MurasoliAPI.ManageSQL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw ex;
             }
             finally
