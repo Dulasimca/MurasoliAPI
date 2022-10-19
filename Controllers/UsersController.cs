@@ -70,6 +70,16 @@ namespace MurasoliAPI.Controllers
         //    }
         //    return "false";
         //}
+        [HttpGet(nameof(GetUsers))]
+        public string GetUsers()
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+
+                var result = manageSQL.GetUsers();
+                return JsonConvert.SerializeObject(result);
+            }
+        }
     }
     public class UsersEntity
     {

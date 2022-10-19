@@ -196,6 +196,72 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
+        public bool UpdateUsers(UpdateUsersEntity UpdateUsersEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updateusers(@u_id,@u_username,@u_emailid,@u_password,@u_encryptedpassword,@u_roleid,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_id", UpdateUsersEntity.u_id);
+                sqlCommand.Parameters.AddWithValue("@u_username", UpdateUsersEntity.u_username);
+                sqlCommand.Parameters.AddWithValue("@u_emailid", UpdateUsersEntity.u_emailid);
+                sqlCommand.Parameters.AddWithValue("@u_password", UpdateUsersEntity.u_password);
+                sqlCommand.Parameters.AddWithValue("@u_encryptedpassword", UpdateUsersEntity.u_encryptedpassword);
+                sqlCommand.Parameters.AddWithValue("@u_roleid", UpdateUsersEntity.u_roleid);
+                sqlCommand.Parameters.AddWithValue("@flag", UpdateUsersEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        public DataSet GetUsers()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from users";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
         //statemaster
         public bool insertstatemaster(StateMasterEntity StateMasterEntity)
         {
