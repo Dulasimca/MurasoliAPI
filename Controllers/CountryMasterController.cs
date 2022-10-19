@@ -29,6 +29,16 @@ namespace MurasoliAPI.Controllers
             }
             return "false";
         }
+        [HttpGet(nameof(GetCountryMaster))]
+        public string GetCountryMaster()
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+
+                var result = manageSQL.GetCountryMaster();
+                return JsonConvert.SerializeObject(result);
+            }
+        }
     }
     public class CountryMasterEntity
     {

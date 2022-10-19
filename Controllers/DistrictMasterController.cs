@@ -30,6 +30,16 @@ namespace MurasoliAPI.Controllers
             }
             return "false";
         }
+        [HttpGet(nameof(GetDistrictMaster))]
+        public string GetDistrictMaster()
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+
+                var result = manageSQL.GetDistrictMaster();
+                return JsonConvert.SerializeObject(result);
+            }
+        }
     }
 public class DistrictMasterEntity
     {

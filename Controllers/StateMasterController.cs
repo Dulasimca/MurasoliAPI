@@ -29,6 +29,16 @@ namespace MurasoliAPI.Controllers
             }
             return "false";
         }
+        [HttpGet(nameof(GetStateMaster))]
+        public string GetStateMaster()
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+
+                var result = manageSQL.GetStateMaster();
+                return JsonConvert.SerializeObject(result);
+            }
+        }
     }
     public class StateMasterEntity
     {

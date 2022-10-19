@@ -196,6 +196,7 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
+        //statemaster
         public bool insertstatemaster(StateMasterEntity StateMasterEntity)
         {
 
@@ -231,6 +232,70 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
+        public bool UpdateStateMaster(UpdateStateMasterEntity UpdateStateMasterEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatestatemaster(@u_statecode,@u_stateid,@u_statename,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_statecode", UpdateStateMasterEntity.u_statecode);
+                sqlCommand.Parameters.AddWithValue("@u_stateid", UpdateStateMasterEntity.u_stateid);
+                sqlCommand.Parameters.AddWithValue("@u_statename", UpdateStateMasterEntity.u_statename);
+                sqlCommand.Parameters.AddWithValue("@flag", UpdateStateMasterEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        public DataSet GetStateMaster()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from statemaster";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //districtmaster
         public bool insertdistrictmaster(DistrictMasterEntity DistrictMasterEntity)
         {
 
@@ -267,6 +332,70 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
+        public bool UpdateDistrictMaster(UpdateDistrictMasterEntity UpdateDistrictMasterEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtcode,@u_districtid,@u_districtname,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_districtcode", UpdateDistrictMasterEntity.u_districtcode);
+                sqlCommand.Parameters.AddWithValue("@u_districtid", UpdateDistrictMasterEntity.u_districtid);
+                sqlCommand.Parameters.AddWithValue("@u_districtname", UpdateDistrictMasterEntity.u_districtname);
+                sqlCommand.Parameters.AddWithValue("@flag", UpdateDistrictMasterEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        public DataSet GetDistrictMaster()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from districtmaster";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //countrymaster
         public bool insertcountrymaster(CountryMasterEntity CountryMasterEntity)
         {
 
@@ -303,7 +432,43 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
-        public DataSet GetDataSetValue()
+        public bool UpdateCountryMaster(UpdateCountryMasterEntity UpdateCountryMasterEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatecountrymaster(@u_countrycode,@u_countryid,@u_countryname,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_countrycode", UpdateCountryMasterEntity.u_countrycode);
+                sqlCommand.Parameters.AddWithValue("@u_countryid", UpdateCountryMasterEntity.u_countryid);
+                sqlCommand.Parameters.AddWithValue("@u_countryname", UpdateCountryMasterEntity.u_countryname);
+                sqlCommand.Parameters.AddWithValue("@flag", UpdateCountryMasterEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        public DataSet GetCountryMaster()
         {
             sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
             DataSet ds = new DataSet();
@@ -315,7 +480,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from districtmaster";
+                sqlCommand.CommandText = "select * from countrymaster";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -328,7 +493,7 @@ namespace MurasoliAPI.ManageSQL
                 ds.Dispose();
                 dataAdapter = null;
             }
-        }
+        }      
 
     }
 }

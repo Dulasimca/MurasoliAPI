@@ -13,8 +13,8 @@ namespace MurasoliAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        [HttpPost(nameof(AddUser))]
-        public string AddUser(UsersEntity UsersEntity)
+        [HttpPost(nameof(UpdateCountryMaster))]
+        public string UpdateCountryMaster(UsersEntity UsersEntity)
         {
             try
             {
@@ -70,16 +70,6 @@ namespace MurasoliAPI.Controllers
         //    }
         //    return "false";
         //}
-
-
-        [HttpGet(nameof(GetDistrict))]
-        public string GetDistrict()
-        {
-            ManageSQLConnection manageSQL = new ManageSQLConnection();
-
-            var result = manageSQL.GetDataSetValue();
-            return JsonConvert.SerializeObject(result);
-        }
     }
     public class UsersEntity
     {
