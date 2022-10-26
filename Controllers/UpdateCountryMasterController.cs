@@ -34,7 +34,6 @@ namespace MurasoliAPI.Controllers
     public class UpdateCountryMasterEntity
     {
         public int u_countrycode { get; set; }
-        public int u_countryid { get; set; }
         public string u_countryname { get; set; }
         public bool flag { get; set; }
     }

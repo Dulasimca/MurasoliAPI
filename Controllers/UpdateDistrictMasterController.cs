@@ -33,7 +33,6 @@ namespace MurasoliAPI.Controllers
     public class UpdateDistrictMasterEntity
     {
         public int u_districtcode { get; set; }
-        public int u_districtid { get; set; }
         public string u_districtname { get; set; }
         public bool flag { get; set; }
     }

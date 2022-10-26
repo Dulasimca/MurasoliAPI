@@ -43,7 +43,6 @@ namespace MurasoliAPI.Controllers
     public class CountryMasterEntity
     {
         public int countrycode { get; set; }
-        public int countryid { get; set; }
         public string countryname { get; set; }
         public bool flag { get; set; }
 

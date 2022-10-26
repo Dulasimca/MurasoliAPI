@@ -13,8 +13,8 @@ namespace MurasoliAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        [HttpPost(nameof(UpdateCountryMaster))]
-        public string UpdateCountryMaster(UsersEntity UsersEntity)
+        [HttpPost(nameof(insertUserMaster))]
+        public string insertUserMaster(UsersEntity UsersEntity)
         {
             try
             {
@@ -86,7 +86,6 @@ namespace MurasoliAPI.Controllers
         public string username { get; set; }
         public string emailid { get; set; }
         public string password { get; set; }
-        public string encryptedpassword { get; set; }
         public int roleid { get; set; }
         public bool Flag { get; set; }
     }

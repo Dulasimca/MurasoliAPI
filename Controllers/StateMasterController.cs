@@ -42,7 +42,7 @@ namespace MurasoliAPI.Controllers
     }
     public class StateMasterEntity
     {
-        public int stateid { get; set; }
+        public int statecode { get; set; }
         public string statename { get; set; }
         public bool Flag { get; set; }
     }

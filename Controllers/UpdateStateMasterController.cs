@@ -33,7 +33,6 @@ namespace MurasoliAPI.Controllers
     public class UpdateStateMasterEntity
     {
         public int u_statecode { get; set; }
-        public int u_stateid { get; set; }
         public string u_statename { get; set; }
         public bool flag { get; set; }
     }

@@ -43,7 +43,7 @@ namespace MurasoliAPI.Controllers
     }
 public class DistrictMasterEntity
     {
-        public int districtid { get; set; }
+        public int districtcode { get; set; }
         public string districtname { get; set; }
         public bool  flag { get; set; }
 
