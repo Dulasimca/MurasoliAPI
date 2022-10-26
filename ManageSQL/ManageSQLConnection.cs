@@ -163,6 +163,8 @@ namespace MurasoliAPI.ManageSQL
             sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
             DataSet ds = new DataSet();
             sqlCommand = new NpgsqlCommand();
+            Security security = new Security();
+            var encryptedValue = security.Encryptword(UsersEntity.password);
             try
             {
                 if (sqlConnection.State == 0)
@@ -176,7 +178,7 @@ namespace MurasoliAPI.ManageSQL
                 sqlCommand.Parameters.AddWithValue("@username", UsersEntity.username);
                 sqlCommand.Parameters.AddWithValue("@emailid", UsersEntity.emailid);
                 sqlCommand.Parameters.AddWithValue("@password", UsersEntity.password);
-                sqlCommand.Parameters.AddWithValue("@encryptedpassword", UsersEntity.encryptedpassword);
+                sqlCommand.Parameters.AddWithValue("@encryptedpassword", encryptedValue);
                 sqlCommand.Parameters.AddWithValue("@roleid", UsersEntity.roleid);
                 sqlCommand.Parameters.AddWithValue("@Flag", UsersEntity.Flag);
                 sqlCommand.ExecuteNonQuery();
@@ -276,9 +278,9 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertstatemaster(@stateid,@statename,@Flag)";
+                sqlCommand.CommandText = "call insertstatemaster(@statecode,@statename,@Flag)";
                 sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@stateid", StateMasterEntity.stateid);
+                sqlCommand.Parameters.AddWithValue("@statecode", StateMasterEntity.statecode);
                 sqlCommand.Parameters.AddWithValue("@statename", StateMasterEntity.statename);
                 sqlCommand.Parameters.AddWithValue("@Flag", StateMasterEntity.Flag);
                 sqlCommand.ExecuteNonQuery();
@@ -311,10 +313,9 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatestatemaster(@u_statecode,@u_stateid,@u_statename,@flag)";
+                sqlCommand.CommandText = "call updatestatemaster(@u_statecode,@u_statename,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@u_statecode", UpdateStateMasterEntity.u_statecode);
-                sqlCommand.Parameters.AddWithValue("@u_stateid", UpdateStateMasterEntity.u_stateid);
                 sqlCommand.Parameters.AddWithValue("@u_statename", UpdateStateMasterEntity.u_statename);
                 sqlCommand.Parameters.AddWithValue("@flag", UpdateStateMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
@@ -375,9 +376,9 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertdistrictmaster(@districtid,@districtname,@flag)";
+                sqlCommand.CommandText = "call insertdistrictmaster(@districtcode,@districtname,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@districtid", DistrictMasterEntity.districtid);
+                sqlCommand.Parameters.AddWithValue("@districtcode", DistrictMasterEntity.districtcode);
                 sqlCommand.Parameters.AddWithValue("@districtname", DistrictMasterEntity.districtname);
                 sqlCommand.Parameters.AddWithValue("@flag", DistrictMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
@@ -411,10 +412,9 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtcode,@u_districtid,@u_districtname,@flag)";
+                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtcode,@u_districtname,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@u_districtcode", UpdateDistrictMasterEntity.u_districtcode);
-                sqlCommand.Parameters.AddWithValue("@u_districtid", UpdateDistrictMasterEntity.u_districtid);
                 sqlCommand.Parameters.AddWithValue("@u_districtname", UpdateDistrictMasterEntity.u_districtname);
                 sqlCommand.Parameters.AddWithValue("@flag", UpdateDistrictMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
@@ -475,10 +475,9 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertcountrymaster(@countrycode,@countryid,@countryname,@flag)";
+                sqlCommand.CommandText = "call insertcountrymaster(@countrycode,@countryname,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@countrycode", CountryMasterEntity.countrycode);
-                sqlCommand.Parameters.AddWithValue("@countryid", CountryMasterEntity.countryid);
                 sqlCommand.Parameters.AddWithValue("@countryname", CountryMasterEntity.countryname);
                 sqlCommand.Parameters.AddWithValue("@flag", CountryMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
@@ -511,10 +510,9 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatecountrymaster(@u_countrycode,@u_countryid,@u_countryname,@flag)";
+                sqlCommand.CommandText = "call updatecountrymaster(@u_countrycode,@u_countryname,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@u_countrycode", UpdateCountryMasterEntity.u_countrycode);
-                sqlCommand.Parameters.AddWithValue("@u_countryid", UpdateCountryMasterEntity.u_countryid);
                 sqlCommand.Parameters.AddWithValue("@u_countryname", UpdateCountryMasterEntity.u_countryname);
                 sqlCommand.Parameters.AddWithValue("@flag", UpdateCountryMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
