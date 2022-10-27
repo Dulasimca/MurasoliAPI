@@ -560,7 +560,342 @@ namespace MurasoliAPI.ManageSQL
                 ds.Dispose();
                 dataAdapter = null;
             }
-        }      
+        }
+
+        //InsertDailynewsEntry
+        public bool InsertDailynewsEntry(DailyNewsEntryEntity DailyNewsEntryEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call insertdailynewsentry(@slno,@newstitle,@details,@image,@location,@district,@state,@country,@displayside,@priority)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@slno", DailyNewsEntryEntity.slno);
+                sqlCommand.Parameters.AddWithValue("@newstitle", DailyNewsEntryEntity.newstitle);
+                sqlCommand.Parameters.AddWithValue("@details", DailyNewsEntryEntity.details);
+                sqlCommand.Parameters.AddWithValue("@image", DailyNewsEntryEntity.image);
+                sqlCommand.Parameters.AddWithValue("@location", DailyNewsEntryEntity.location);
+                sqlCommand.Parameters.AddWithValue("@district", DailyNewsEntryEntity.district);
+                sqlCommand.Parameters.AddWithValue("@state", DailyNewsEntryEntity.state);
+                sqlCommand.Parameters.AddWithValue("@country", DailyNewsEntryEntity.country);
+                sqlCommand.Parameters.AddWithValue("@displayside", DailyNewsEntryEntity.displayside);
+                sqlCommand.Parameters.AddWithValue("@priority", DailyNewsEntryEntity.priority);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+
+        //UpdateDailyNewsEntry
+        public bool UpdateDailyNewsEntry(UpdateDailyNewsEntryEntity UpdateDailyNewsEntryEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatedailynewsentry(@u_slno,@u_newstitle,@u_details,@u_image,@u_location,@u_district,@u_state,@u_country,@u_displayside,@u_priority)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_slno", UpdateDailyNewsEntryEntity.u_slno);
+                sqlCommand.Parameters.AddWithValue("@u_newstitle", UpdateDailyNewsEntryEntity.u_newstitle);
+                sqlCommand.Parameters.AddWithValue("@u_details", UpdateDailyNewsEntryEntity.u_details);
+                sqlCommand.Parameters.AddWithValue("@u_image", UpdateDailyNewsEntryEntity.u_image);
+                sqlCommand.Parameters.AddWithValue("@u_location", UpdateDailyNewsEntryEntity.u_location);
+                sqlCommand.Parameters.AddWithValue("@u_district", UpdateDailyNewsEntryEntity.u_district);
+                sqlCommand.Parameters.AddWithValue("@u_state", UpdateDailyNewsEntryEntity.u_state);
+                sqlCommand.Parameters.AddWithValue("@u_country", UpdateDailyNewsEntryEntity.u_country);
+                sqlCommand.Parameters.AddWithValue("@u_displayside", UpdateDailyNewsEntryEntity.u_displayside);
+                sqlCommand.Parameters.AddWithValue("@u_priority", UpdateDailyNewsEntryEntity.u_priority);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //GetDailyNewsEntry
+        public DataSet GetDailyNewsEntry()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from dailynewsentry";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //InsertMainNewsEntry
+        public bool InserMainnewsEntry(MainNewsEntryEntity MainNewsEntryEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call insertmainnewsentry(@slno,@newstitle,@details,@image,@location,@district,@state,@country,@displayside,@priority)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@slno", MainNewsEntryEntity.slno);
+                sqlCommand.Parameters.AddWithValue("@newstitle", MainNewsEntryEntity.newstitle);
+                sqlCommand.Parameters.AddWithValue("@details", MainNewsEntryEntity.details);
+                sqlCommand.Parameters.AddWithValue("@image", MainNewsEntryEntity.image);
+                sqlCommand.Parameters.AddWithValue("@location", MainNewsEntryEntity.location);
+                sqlCommand.Parameters.AddWithValue("@district", MainNewsEntryEntity.district);
+                sqlCommand.Parameters.AddWithValue("@state", MainNewsEntryEntity.state);
+                sqlCommand.Parameters.AddWithValue("@country", MainNewsEntryEntity.country);
+                sqlCommand.Parameters.AddWithValue("@displayside", MainNewsEntryEntity.displayside);
+                sqlCommand.Parameters.AddWithValue("@priority", MainNewsEntryEntity.priority);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //UpdateMainNewsEntry
+        public bool UpdateMainNewsEntry(UpdateMainNewsEntryEntity UpdateMainNewsEntryEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatemainnewsentry(@u_slno,@u_newstitle,@u_details,@u_image,@u_location,@u_district,@u_state,@u_country,@u_displayside,@u_priority)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_slno", UpdateMainNewsEntryEntity.u_slno);
+                sqlCommand.Parameters.AddWithValue("@u_newstitle", UpdateMainNewsEntryEntity.u_newstitle);
+                sqlCommand.Parameters.AddWithValue("@u_details", UpdateMainNewsEntryEntity.u_details);
+                sqlCommand.Parameters.AddWithValue("@u_image", UpdateMainNewsEntryEntity.u_image);
+                sqlCommand.Parameters.AddWithValue("@u_location", UpdateMainNewsEntryEntity.u_location);
+                sqlCommand.Parameters.AddWithValue("@u_district", UpdateMainNewsEntryEntity.u_district);
+                sqlCommand.Parameters.AddWithValue("@u_state", UpdateMainNewsEntryEntity.u_state);
+                sqlCommand.Parameters.AddWithValue("@u_country", UpdateMainNewsEntryEntity.u_country);
+                sqlCommand.Parameters.AddWithValue("@u_displayside", UpdateMainNewsEntryEntity.u_displayside);
+                sqlCommand.Parameters.AddWithValue("@u_priority", UpdateMainNewsEntryEntity.u_priority);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //GetDailyNewsEntry
+        public DataSet GetMainNewsEntry()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from mainnewsentry";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //InsertFlashNewsEntry
+        public bool InsertFlashNewsEntry(FlashNewsEntryEntity FlashNewsEntryEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call insertflashnewsentry(@slno,@location,@newsdetails,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@slno", FlashNewsEntryEntity.slno);
+                sqlCommand.Parameters.AddWithValue("@location", FlashNewsEntryEntity.location);
+                sqlCommand.Parameters.AddWithValue("@incidentdate", FlashNewsEntryEntity.incidentdate);
+                sqlCommand.Parameters.AddWithValue("@newsdetails", FlashNewsEntryEntity.newsdetails);
+                sqlCommand.Parameters.AddWithValue("@flag", FlashNewsEntryEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //UpdateFlashNewsEntry
+        public bool UpdateFlashNewsEntry(UpdateFlashNewsEntryEntity UpdateFlashNewsEntryEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updateflashnewsentry(@u_slno,@u_location,@u_incidentdate,@u_newsdetails,@u_flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_slno", UpdateFlashNewsEntryEntity.u_slno);
+                sqlCommand.Parameters.AddWithValue("@u_location", UpdateFlashNewsEntryEntity.u_location);
+                sqlCommand.Parameters.AddWithValue("@u_incidentdate", UpdateFlashNewsEntryEntity.u_incidentdate);
+                sqlCommand.Parameters.AddWithValue("@u_newsdetails", UpdateFlashNewsEntryEntity.u_newsdetails);
+                sqlCommand.Parameters.AddWithValue("@u_flag", UpdateFlashNewsEntryEntity.u_flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //GetFlashNewsEntry
+        public DataSet GetFlashNewsEntry()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from flashnewsentry";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
 
     }
 }
