@@ -38,11 +38,13 @@ namespace MurasoliAPI.Controllers
         public string u_newstitle { get; set; }
         public string u_details { get; set; }
         public string u_image { get; set; }
-        public int u_location { get; set; }
+        public string u_location { get; set; }
         public int u_district { get; set; }
         public int u_state { get; set; }
         public int u_country { get; set; }
         public int u_displayside { get; set; }
         public int u_priority { get; set; }
+
+        public bool u_flag { get; set; }
     }
 }
