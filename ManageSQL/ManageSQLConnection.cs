@@ -802,7 +802,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertflashnewsentry(@slno,@location,@newsdetails,@flag)";
+                sqlCommand.CommandText = "call insertflashnewsentry(@slno,@location,@incidentdate,@newsdetails,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@slno", FlashNewsEntryEntity.slno);
                 sqlCommand.Parameters.AddWithValue("@location", FlashNewsEntryEntity.location);
