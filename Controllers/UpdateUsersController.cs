@@ -36,7 +36,6 @@ namespace MurasoliAPI.Controllers
         public string u_username { get; set; }
         public string u_emailid { get; set; }
         public string u_password { get; set; }
-        public string u_encryptedpassword { get; set; }
         public int u_roleid { get; set; }
         public bool flag { get; set; }
     }
