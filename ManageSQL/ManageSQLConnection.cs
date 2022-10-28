@@ -173,10 +173,9 @@ namespace MurasoliAPI.ManageSQL
                 }
                 sqlCommand.Connection = sqlConnection;
                 //sqlCommand.CommandText = "insert into users (username,emailid,password,encryptedpassword,roleid,flag) values(@username,@emailid,@password,@encryptedpassword,@roleid,@flag)";
-                sqlCommand.CommandText = "call users(@username,@emailid,@password,@encryptedpassword,@roleid,@Flag)";
+                sqlCommand.CommandText = "call users(@id,@username,@emailid,@password,@encryptedpassword,@roleid,@Flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@id", UsersEntity.id);
-                sqlCommand.Parameters.AddWithValue("@username", UsersEntity.username);
                 sqlCommand.Parameters.AddWithValue("@username", UsersEntity.username);
                 sqlCommand.Parameters.AddWithValue("@emailid", UsersEntity.emailid);
                 sqlCommand.Parameters.AddWithValue("@password", UsersEntity.password);
@@ -189,6 +188,7 @@ namespace MurasoliAPI.ManageSQL
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw ex;
             }
             finally
@@ -642,6 +642,7 @@ namespace MurasoliAPI.ManageSQL
             catch (Exception ex)
             {
                 throw ex;
+                Console.WriteLine(ex.Message);
             }
             finally
             {
@@ -714,6 +715,7 @@ namespace MurasoliAPI.ManageSQL
             catch (Exception ex)
             {
                 throw ex;
+                Console.WriteLine(ex.Message);
             }
             finally
             {
