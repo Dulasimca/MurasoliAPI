@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.IO;
+using MurasoliAPI.Model;
 
 namespace MurasoliAPI.Controllers
 {
@@ -18,6 +19,7 @@ namespace MurasoliAPI.Controllers
         {
             try
             {
+                ResizeImage resize = new ResizeImage();
                 bool isCopied = false;
                 string newFileName = string.Empty;
                 string sFileName = string.Empty;
@@ -42,9 +44,14 @@ namespace MurasoliAPI.Controllers
                     }
 
                     var folder = GlobalVariable.FolderPath + folderName; // Path.Combine("Resources", folderName);
+                    var thump = GlobalVariable.FolderPath + "thump";
                     if (!Directory.Exists(folder))
                     {
                         Directory.CreateDirectory(folder);
+                    }
+                    if (!Directory.Exists(thump))
+                    {
+                        Directory.CreateDirectory(thump);
                     }
                     var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folder);
                     var fullPath = Path.Combine(pathToSave, fileName);
@@ -54,19 +61,21 @@ namespace MurasoliAPI.Controllers
                         file.CopyTo(stream);
                         isCopied = true;
                     }
-                    newFileName = fileName;
+                   // newFileName = fileName;
                     if (isCopied)
                     {
                         System.IO.FileInfo fi = new System.IO.FileInfo(fullPath);
                         if (fi.Exists)
                         {
-                            //sFileName = DateTime.Now.ToString("ddMMyyyyhhmmss");
-                            //newFileName = fileName.Replace("." + fi.Extension, "_") + sFileName + fi.Extension;
-                            var NewfullPath = Path.Combine(pathToSave, fileName);
+                            sFileName = DateTime.Now.ToString("ddMMyyyyhhmmss");
+                            newFileName = fileName.Replace(fi.Extension, "_") + sFileName + fi.Extension;
+                            var NewfullPath = Path.Combine(pathToSave, newFileName);
                             fi.MoveTo(NewfullPath);
+                              resize.CompressImage(NewfullPath, thump, 25, newFileName);
+                            //resize.ImgResize(NewfullPath, thump + "//" + newFileName);
                         }
                     }
-                    return new Tuple<bool, string>(isCopied, newFilename);
+                    return new Tuple<bool, string>(isCopied, newFileName);
                     // return Ok(new { dbPath });
                 }
                 else
