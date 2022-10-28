@@ -54,7 +54,7 @@ namespace MurasoliAPI.Controllers
                         file.CopyTo(stream);
                         isCopied = true;
                     }
-                    //newFileName = fileName;
+                    newFileName = fileName;
                     if (isCopied)
                     {
                         System.IO.FileInfo fi = new System.IO.FileInfo(fullPath);
@@ -62,7 +62,7 @@ namespace MurasoliAPI.Controllers
                         {
                             //sFileName = DateTime.Now.ToString("ddMMyyyyhhmmss");
                             //newFileName = fileName.Replace("." + fi.Extension, "_") + sFileName + fi.Extension;
-                            var NewfullPath = Path.Combine(pathToSave, newFilename);
+                            var NewfullPath = Path.Combine(pathToSave, fileName);
                             fi.MoveTo(NewfullPath);
                         }
                     }
