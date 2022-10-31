@@ -206,6 +206,8 @@ namespace MurasoliAPI.ManageSQL
             sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
             DataSet ds = new DataSet();
             sqlCommand = new NpgsqlCommand();
+            Security security = new Security();
+            var encryptedValue = security.Encryptword(UpdateUsersEntity.u_password);
             try
             {
                 if (sqlConnection.State == 0)
@@ -213,13 +215,13 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updateusers(@u_id,@u_username,@u_emailid,@u_password,@u_roleid,@flag)";
+                sqlCommand.CommandText = "call updateusers(@u_id,@u_username,@u_emailid,@u_password,@u_encryptedpassword,@u_roleid,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@u_id", UpdateUsersEntity.u_id);
                 sqlCommand.Parameters.AddWithValue("@u_username", UpdateUsersEntity.u_username);
                 sqlCommand.Parameters.AddWithValue("@u_emailid", UpdateUsersEntity.u_emailid);
                 sqlCommand.Parameters.AddWithValue("@u_password", UpdateUsersEntity.u_password);
-                //sqlCommand.Parameters.AddWithValue("@u_encryptedpassword", UpdateUsersEntity.u_encryptedpassword);
+                sqlCommand.Parameters.AddWithValue("@u_encryptedpassword", encryptedValue);
                 sqlCommand.Parameters.AddWithValue("@u_roleid", UpdateUsersEntity.u_roleid);
                 sqlCommand.Parameters.AddWithValue("@flag", UpdateUsersEntity.flag);
                 sqlCommand.ExecuteNonQuery();
