@@ -72,7 +72,7 @@ namespace MurasoliAPI.Controllers
                             var NewfullPath = Path.Combine(pathToSave, newFileName);
                             fi.MoveTo(NewfullPath);
                               resize.CompressImage(NewfullPath, thump, 25, newFileName);
-                            //resize.ImgResize(NewfullPath, thump + "//" + newFileName);
+                              resize.ImgResize(NewfullPath, thump + "//" + newFileName);
                         }
                     }
                     return new Tuple<bool, string>(isCopied, newFileName);
