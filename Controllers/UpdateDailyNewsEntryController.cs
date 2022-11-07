@@ -42,6 +42,8 @@ namespace MurasoliAPI.Controllers
         public int u_country { get; set; }
         public int u_displayside { get; set; }
         public int u_priority { get; set; }
+        public string u_newstitletamil { get; set; }
+        public string u_newsdetailstamil { get; set; }
         public bool u_flag { get; set; }
 
 

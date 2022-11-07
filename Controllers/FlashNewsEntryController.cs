@@ -47,6 +47,7 @@ namespace MurasoliAPI.Controllers
         public string location { get; set; }
         public string incidentdate { get; set; }
         public string newsdetails { get; set; }
+        public string newsdetailstamil { get; set; }
         public bool flag { get; set; }
     }
 }
