@@ -86,8 +86,9 @@ namespace MurasoliAPI.Model
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 // Draw image with new width and height  
                 g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+                b.Save(destination);
                 g.Dispose();
-                b.Save(System.IO.Path.GetDirectoryName(destination));
+                
                 // return (System.Drawing.Image)b;
             }
             catch (Exception ex)
