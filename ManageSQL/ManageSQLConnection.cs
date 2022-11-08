@@ -549,7 +549,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select totalrecords()";
+                sqlCommand.CommandText = "select * from countrymaster";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
