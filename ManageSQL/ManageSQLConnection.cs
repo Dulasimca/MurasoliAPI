@@ -549,7 +549,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from countrymaster";
+                sqlCommand.CommandText = "select totalrecords()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -626,7 +626,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatedailynewsentry(@u_slno,@u_newstitle,@u_details,@u_image,@u_location,@u_district,@u_state,@u_country,@u_displayside,@u_priority,@u_newstitletamil,@,u_newsdetailstamil@u_flag)";
+                sqlCommand.CommandText = "call updatedailynewsentry(@u_slno,@u_newstitle,@u_details,@u_image,@u_location,@u_district,@u_state,@u_country,@u_displayside,@u_priority,@u_newstitletamil,@u_newsdetailstamil,@u_flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@u_slno", UpdateDailyNewsEntryEntity.u_slno);
                 sqlCommand.Parameters.AddWithValue("@u_newstitle", UpdateDailyNewsEntryEntity.u_newstitle);
