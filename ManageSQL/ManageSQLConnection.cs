@@ -915,6 +915,109 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
+        //insertdailynewspaper
+        public bool insertdailynewspaper(DailyNewsPaperEntity DailyNewsPaperEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call insertdailynewspaper(@id,@newspaperdate,@filename,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@id", DailyNewsPaperEntity.id);
+                sqlCommand.Parameters.AddWithValue("@newspaperdate", DailyNewsPaperEntity.newspaperdate);
+                sqlCommand.Parameters.AddWithValue("@filename", DailyNewsPaperEntity.filename);
+                sqlCommand.Parameters.AddWithValue("@flag", DailyNewsPaperEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //upatedailynewspaper
+        public bool UpdateDailyNewsPaper(UpdateDailyNewsPaperEntity UpdateDailyNewsPaperEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatedailynewspaper(@u_id,@u_newspaperdate,@u_filename,@u_flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_id", UpdateDailyNewsPaperEntity.u_id);
+                sqlCommand.Parameters.AddWithValue("@u_newspaperdate", UpdateDailyNewsPaperEntity.u_newspaperdate);
+                sqlCommand.Parameters.AddWithValue("@u_filename", UpdateDailyNewsPaperEntity.u_filename);
+                sqlCommand.Parameters.AddWithValue("@u_flag", UpdateDailyNewsPaperEntity.u_flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //getdailynewspaper
+        public DataSet GetDailyNewsPaper()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from dailynewspaper";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
 
     }
 }
