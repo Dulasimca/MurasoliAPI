@@ -254,7 +254,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from users";
+                sqlCommand.CommandText = "select * from public.get_users()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -352,7 +352,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from statemaster";
+                sqlCommand.CommandText = "select * from public.get_statemaster()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -451,7 +451,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from districtmaster";
+                sqlCommand.CommandText = "select * from public.get_districtmaster()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -549,7 +549,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from countrymaster";
+                sqlCommand.CommandText = "select * from public.get_countrymaster()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -672,7 +672,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from dailynewsentry";
+                sqlCommand.CommandText = "select * from public.get_dailynewsentry()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -793,7 +793,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from mainnewsentry";
+                sqlCommand.CommandText = "select * from public.get_mainnewsentry()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -822,7 +822,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertflashnewsentry(@slno,@location,@incidentdate,@newsdetails,newsdetailstamil,@flag)";
+                sqlCommand.CommandText = "call insertflashnewsentry(@slno,@location,@incidentdate,@newsdetails,@newsdetailstamil,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@slno", FlashNewsEntryEntity.slno);
                 sqlCommand.Parameters.AddWithValue("@location", FlashNewsEntryEntity.location);
@@ -900,7 +900,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from flashnewsentry";
+                sqlCommand.CommandText = "select * from public.get_flashnewsentry();";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
@@ -1003,7 +1003,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "select * from dailynewspaper";
+                sqlCommand.CommandText = "select * from public.get_dailynewspaper()";
                 sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
