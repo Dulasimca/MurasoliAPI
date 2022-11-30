@@ -54,6 +54,7 @@ namespace MurasoliAPI.Controllers
         public int priority { get; set; }
         public string newstitletamil { get; set; }
         public string newsdetailstamil { get; set; }
+        public string incidentdate { get; set; }
         public bool flag { get; set; }
     }
 }

@@ -42,6 +42,7 @@ namespace MurasoliAPI.Controllers
     public class DailyNewsPaperEntity
     {
         public int id { get; set; }
+        public int district { get; set; }
         public string newspaperdate { get; set; }
         public string filename { get; set; }
         public bool flag { get; set; }
