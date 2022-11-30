@@ -33,6 +33,7 @@ namespace MurasoliAPI.Controllers
       public class UpdateDailyNewsPaperEntity
     {
         public int u_id { get; set; }
+        public int u_district { get; set; }
         public string u_newspaperdate { get; set; }
         public string u_filename { get; set; }
         public bool u_flag { get; set; }
