@@ -47,6 +47,8 @@ namespace MurasoliAPI.Controllers
         public string u_newstitletamil { get; set; }
         public string u_newsdetailstamil { get; set; }
         public string u_incidentdate { get; set; }
+        public string u_newsshort { get; set; }
+        public string u_newstamilshort { get; set; }
         public bool u_flag { get; set; }
     }
 }
