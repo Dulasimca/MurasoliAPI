@@ -418,7 +418,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtid,@u_districtname,u_districtnametamil,@u_flag)";
+                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtid,@u_districtname,@u_districtnametamil,@u_flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@u_districtid", UpdateDistrictMasterEntity.u_districtid);
                 sqlCommand.Parameters.AddWithValue("@u_districtname", UpdateDistrictMasterEntity.u_districtname);
