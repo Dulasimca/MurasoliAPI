@@ -381,10 +381,11 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertdistrictmaster(@districtcode,@districtname,@flag)";
+                sqlCommand.CommandText = "call insertdistrictmaster(@districtid,@districtname,@districtnametamil,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@districtcode", DistrictMasterEntity.districtcode);
+                sqlCommand.Parameters.AddWithValue("@districtid", DistrictMasterEntity.districtcode);
                 sqlCommand.Parameters.AddWithValue("@districtname", DistrictMasterEntity.districtname);
+                sqlCommand.Parameters.AddWithValue("@districtnametamil", DistrictMasterEntity.districttamilname);
                 sqlCommand.Parameters.AddWithValue("@flag", DistrictMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
 
@@ -417,11 +418,12 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtcode,@u_districtname,@flag)";
+                sqlCommand.CommandText = "call updatedistrictmaster(@u_districtid,@u_districtname,u_districtnametamil,@u_flag)";
                 sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@u_districtcode", UpdateDistrictMasterEntity.u_districtcode);
+                sqlCommand.Parameters.AddWithValue("@u_districtid", UpdateDistrictMasterEntity.u_districtid);
                 sqlCommand.Parameters.AddWithValue("@u_districtname", UpdateDistrictMasterEntity.u_districtname);
-                sqlCommand.Parameters.AddWithValue("@flag", UpdateDistrictMasterEntity.flag);
+                sqlCommand.Parameters.AddWithValue("@u_districtnametamil", UpdateDistrictMasterEntity.u_districtnametamil);
+                sqlCommand.Parameters.AddWithValue("@u_flag", UpdateDistrictMasterEntity.u_flag);
                 sqlCommand.ExecuteNonQuery();
 
                 return true;

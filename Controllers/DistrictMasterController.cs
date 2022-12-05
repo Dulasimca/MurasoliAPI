@@ -45,6 +45,7 @@ public class DistrictMasterEntity
     {
         public int districtcode { get; set; }
         public string districtname { get; set; }
+        public string districttamilname { get; set; }
         public bool  flag { get; set; }
 
     }
