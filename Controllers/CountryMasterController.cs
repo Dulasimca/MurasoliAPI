@@ -44,6 +44,7 @@ namespace MurasoliAPI.Controllers
     {
         public int countrycode { get; set; }
         public string countryname { get; set; }
+        public string countrynametamil { get; set; }
         public bool flag { get; set; }
 
     }

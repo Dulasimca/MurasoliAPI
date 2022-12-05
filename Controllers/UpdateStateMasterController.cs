@@ -34,6 +34,7 @@ namespace MurasoliAPI.Controllers
     {
         public int u_statecode { get; set; }
         public string u_statename { get; set; }
+        public string u_statenametamil { get; set; }
         public bool flag { get; set; }
     }
 }
