@@ -319,12 +319,12 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call updatestatemaster(@u_statecode,@u_statename,@u_statenametamil,@flag)";
+                sqlCommand.CommandText = "call updatestatemaster(@u_stateid,@u_statename,@u_statenametamil,@u_flag)";
                 sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@u_statecode", UpdateStateMasterEntity.u_statecode);
+                sqlCommand.Parameters.AddWithValue("@u_stateid", UpdateStateMasterEntity.u_statecode);
                 sqlCommand.Parameters.AddWithValue("@u_statename", UpdateStateMasterEntity.u_statename);
                 sqlCommand.Parameters.AddWithValue("@u_statenametamil", UpdateStateMasterEntity.u_statenametamil);
-                sqlCommand.Parameters.AddWithValue("@flag", UpdateStateMasterEntity.flag);
+                sqlCommand.Parameters.AddWithValue("@u_flag", UpdateStateMasterEntity.flag);
                 sqlCommand.ExecuteNonQuery();
 
                 return true;
