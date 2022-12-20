@@ -38,23 +38,42 @@ namespace MurasoliAPI.Controllers
                 var result = manageSQL.GetMainNewsEntry();
                 return JsonConvert.SerializeObject(result);
             }
+
         }
+        [HttpGet(nameof(GetMainNewsEntryById))]
+        public string GetMainNewsEntryById(int _storyId)
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+                try
+                {
+
+                    var result = manageSQL.GetMainNewsEntryById(_storyId);
+                    return JsonConvert.SerializeObject(result);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
     }
     public class MainNewsEntryEntity
-    {
-        public int slno { get; set; }
-        public string newstitle { get; set; }
-        public string details { get; set; }
-        public string image { get; set; }
-        public string location { get; set; }
-        public int district { get; set; }
-        public int state { get; set; }
-        public int country { get; set; }
-        public int displayside { get; set; }
-        public int priority { get; set; }
-        public string newstitletamil { get; set; }
-        public string newsdetailstamil { get; set; }
-        public string incidentdate { get; set; }
-        public bool flag { get; set; }
-    }
+        {
+            public int slno { get; set; }
+            public string newstitle { get; set; }
+            public string details { get; set; }
+            public string image { get; set; }
+            public string location { get; set; }
+            public int district { get; set; }
+            public int state { get; set; }
+            public int country { get; set; }
+            public int displayside { get; set; }
+            public int priority { get; set; }
+            public string newstitletamil { get; set; }
+            public string newsdetailstamil { get; set; }
+            public string incidentdate { get; set; }
+            public bool flag { get; set; }
+        }
 }
