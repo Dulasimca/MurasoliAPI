@@ -38,7 +38,9 @@ namespace MurasoliAPI.Controllers
                 var result = manageSQL.GetMainNewsEntry();
                 return JsonConvert.SerializeObject(result);
             }
+
         }
+
         [HttpGet("{id}")]
         public string GetMainNewsEntrybyId(int slno)
         {
@@ -50,6 +52,25 @@ namespace MurasoliAPI.Controllers
                 return JsonConvert.SerializeObject(result);
             }
         }
+
+        [HttpGet(nameof(GetMainNewsEntryById))]
+        public string GetMainNewsEntryById(int _storyId)
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+                try
+                {
+
+                    var result = manageSQL.GetMainNewsEntryById(_storyId);
+                    return JsonConvert.SerializeObject(result);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
     }
     public class MainNewsEntryEntity
     {

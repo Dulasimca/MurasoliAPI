@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using MurasoliAPI.Controllers;
 using Npgsql;
+using static MurasoliAPI.Controllers.MainNewsEntryController;
 
 namespace MurasoliAPI.ManageSQL
 {
@@ -680,6 +681,35 @@ namespace MurasoliAPI.ManageSQL
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = "select * from public.get_dailynewsentry()";
                 sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //GetMainNewsEntryById
+        public DataSet GetMainNewsEntryById(int _storyid)
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from public.get_mainnewsentrybyid(@f_slno)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@f_slno", _storyid);
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
                 return ds;
