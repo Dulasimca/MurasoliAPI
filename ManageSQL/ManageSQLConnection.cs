@@ -1062,6 +1062,125 @@ namespace MurasoliAPI.ManageSQL
             }
         }
 
+        //Reporter-Registration
+        public bool InsertReporterRegistration(ReporterRegEntity ReporterRegEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call insertreporterregistration(@slno,@name,@mailid,@dob,@gender,@phonenumber,@address,@state,@district,@city,@pincode,@landmark,@flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@slno", ReporterRegEntity.slno);
+                sqlCommand.Parameters.AddWithValue("@name", ReporterRegEntity.name);
+                sqlCommand.Parameters.AddWithValue("@mailid", ReporterRegEntity.mailid);
+                sqlCommand.Parameters.AddWithValue("@dob", ReporterRegEntity.dob);
+                sqlCommand.Parameters.AddWithValue("@gender",ReporterRegEntity.gender);
+                sqlCommand.Parameters.AddWithValue("@phonenumber",ReporterRegEntity.phonenumber) ;
+                sqlCommand.Parameters.AddWithValue("@address", ReporterRegEntity.address);
+                sqlCommand.Parameters.AddWithValue("@state", ReporterRegEntity.state);
+                sqlCommand.Parameters.AddWithValue("@district",ReporterRegEntity.district);
+                sqlCommand.Parameters.AddWithValue("@city",ReporterRegEntity.city);
+                sqlCommand.Parameters.AddWithValue("@pincode",ReporterRegEntity.pincode);
+                sqlCommand.Parameters.AddWithValue("@landmark", ReporterRegEntity.landmark);
+                sqlCommand.Parameters.AddWithValue("@flag", ReporterRegEntity.flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+        //getReporterReg
+        public DataSet GetReporterRegistration()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from public.get_reporterregistration()";
+                sqlCommand.CommandType = CommandType.Text;
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //upatereporterreg
+        public bool UpdateReporterRegistration(UpdateReporterRegEntity UpdateReportReg)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatereporterregistration(@u_slno,@u_name,@u_mailid,@u_dob,@u_gender,@u_phonenumber,@u_address,@u_state,@u_district,@u_city,@u_pincode,@u_landmark,@u_flag)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_slno", UpdateReportReg.u_slno);
+                sqlCommand.Parameters.AddWithValue("@u_name", UpdateReportReg.u_name);
+                sqlCommand.Parameters.AddWithValue("@u_mailid", UpdateReportReg.u_mailid);
+                sqlCommand.Parameters.AddWithValue("@u_dob", UpdateReportReg.u_dob);
+                sqlCommand.Parameters.AddWithValue("@u_gender", UpdateReportReg.u_gender);
+                sqlCommand.Parameters.AddWithValue("@u_phonenumber", UpdateReportReg.u_phonenumber);
+                sqlCommand.Parameters.AddWithValue("@u_address", UpdateReportReg.u_address);
+                sqlCommand.Parameters.AddWithValue("@u_state", UpdateReportReg.u_state);
+                sqlCommand.Parameters.AddWithValue("@u_district", UpdateReportReg.u_district);
+                sqlCommand.Parameters.AddWithValue("@u_city", UpdateReportReg.u_city);
+                sqlCommand.Parameters.AddWithValue("@u_pincode", UpdateReportReg.u_pincode);
+                sqlCommand.Parameters.AddWithValue("@u_landmark", UpdateReportReg.u_landmark);
+                sqlCommand.Parameters.AddWithValue("@u_flag", UpdateReportReg.u_flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
 
     }
 }
