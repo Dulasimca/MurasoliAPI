@@ -837,6 +837,36 @@ namespace MurasoliAPI.ManageSQL
                 sqlCommand.Connection = sqlConnection;
                 sqlCommand.CommandText = "select * from public.get_mainnewsentry()";
                 sqlCommand.CommandType = CommandType.Text;
+                //sqlCommand.Parameters.AddWithValue("@slno", MainNewsEntryEntity.slno);
+                dataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(ds);
+                return ds;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //getmainnewsentrybyid
+
+        public DataSet GetMainNewsEntrybyId()
+        {
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "select * from public.get_mainnewsentrybyid(slno)";
+                sqlCommand.CommandType = CommandType.Text;
                 dataAdapter = new NpgsqlDataAdapter(sqlCommand);
                 dataAdapter.Fill(ds);
                 return ds;
