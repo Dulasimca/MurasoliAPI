@@ -53,6 +53,8 @@ namespace MurasoliAPI.Controllers
         public string city { get; set; }
         public int pincode { get; set; }
         public string landmark { get; set; }
+        public int approvalstatus { get; set; }
+
         public bool flag { get; set; }
     }
 }

@@ -1106,7 +1106,7 @@ namespace MurasoliAPI.ManageSQL
                     sqlConnection.Open();
                 }
                 sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText = "call insertreporterregistration(@slno,@name,@mailid,@dob,@gender,@phonenumber,@address,@state,@district,@city,@pincode,@landmark,@flag)";
+                sqlCommand.CommandText = "call insertreporterregistration(@slno,@name,@mailid,@dob,@gender,@phonenumber,@address,@state,@district,@city,@pincode,@landmark,@approvalstatus,@flag)";
                 sqlCommand.CommandType = CommandType.Text;
                 sqlCommand.Parameters.AddWithValue("@slno", ReporterRegEntity.slno);
                 sqlCommand.Parameters.AddWithValue("@name", ReporterRegEntity.name);
@@ -1120,6 +1120,7 @@ namespace MurasoliAPI.ManageSQL
                 sqlCommand.Parameters.AddWithValue("@city",ReporterRegEntity.city);
                 sqlCommand.Parameters.AddWithValue("@pincode",ReporterRegEntity.pincode);
                 sqlCommand.Parameters.AddWithValue("@landmark", ReporterRegEntity.landmark);
+                sqlCommand.Parameters.AddWithValue("@approvalstatus", ReporterRegEntity.approvalstatus);
                 sqlCommand.Parameters.AddWithValue("@flag", ReporterRegEntity.flag);
                 sqlCommand.ExecuteNonQuery();
 
@@ -1194,6 +1195,41 @@ namespace MurasoliAPI.ManageSQL
                 sqlCommand.Parameters.AddWithValue("@u_pincode", UpdateReportReg.u_pincode);
                 sqlCommand.Parameters.AddWithValue("@u_landmark", UpdateReportReg.u_landmark);
                 sqlCommand.Parameters.AddWithValue("@u_flag", UpdateReportReg.u_flag);
+                sqlCommand.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlCommand.Dispose();
+                ds.Dispose();
+                dataAdapter = null;
+            }
+        }
+
+        //upatereporterregbyslno
+        public bool UpdateReporterRegBySlno(UpdateReporterBySlnoEntity UpdateReporterBySlnoEntity)
+        {
+
+            sqlConnection = new NpgsqlConnection(GlobalVariable.ConnectionStringForPostgreSQL);
+            DataSet ds = new DataSet();
+            sqlCommand = new NpgsqlCommand();
+            try
+            {
+                if (sqlConnection.State == 0)
+                {
+                    sqlConnection.Open();
+                }
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.CommandText = "call updatereporterregbyslno(@u_slno,@u_approvalstatus)";
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters.AddWithValue("@u_slno", UpdateReporterBySlnoEntity.u_slno);
+                sqlCommand.Parameters.AddWithValue("@u_approvalstatus", UpdateReporterBySlnoEntity.u_approvalstatus);
                 sqlCommand.ExecuteNonQuery();
 
                 return true;
