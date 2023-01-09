@@ -40,6 +40,19 @@ namespace MurasoliAPI.Controllers
             }
 
         }
+
+        [HttpGet("{id}")]
+        public string GetMainNewsEntrybyId(int slno)
+        {
+            {
+                ManageSQLConnection manageSQL = new ManageSQLConnection();
+                List<KeyValuePair<string, string>> sqlParameters = new List<KeyValuePair<string, string>>();
+                sqlParameters.Add(new KeyValuePair<string, string>("slno", Convert.ToString(slno)));
+                var result = manageSQL.GetMainNewsEntrybyId();
+                return JsonConvert.SerializeObject(result);
+            }
+        }
+
         [HttpGet(nameof(GetMainNewsEntryById))]
         public string GetMainNewsEntryById(int _storyId)
         {
